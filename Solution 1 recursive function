@@ -1,0 +1,31 @@
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root1
+ * @param {TreeNode} root2
+ * @return {number[]}
+ */
+var getAllElements = function(root1, root2) {
+    let arr = [];        
+    function goDown(tree){
+        if(tree != null || tree != null && tree.val == 0){
+        arr.push(tree.val);
+        }        
+        if(tree != null && tree.left){
+            goDown(tree.left);
+        }
+        if(tree != null && tree.right){
+            goDown(tree.right);
+        }
+    }    
+    goDown(root1);
+    goDown(root2);
+    arr.sort(function(a, b){return a - b;})   // simply "sort()" DOESN T WORK (some input treated as string go to the end of the arr)
+ return arr;
+};
